@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografis: Kabag TU - Jaringan Saraf Vital Sekolah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .text-gradient {
+            background: linear-gradient(90deg, #0a9396, #94d2bd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flowchart-node {
+            border: 2px solid #0a9396;
+            background-color: #ffffff;
+            color: #005f73;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        .flowchart-center {
+            background: linear-gradient(135deg, #005f73, #0a9396);
+            color: white;
+            border: none;
+            transform: scale(1.1);
+        }
+        .flowchart-line {
+            position: absolute;
+            background-color: #94d2bd;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center py-8 md:py-12">
+            <h1 class="text-4xl md:text-6xl font-black text-gradient mb-4">Kabag TU: Jaringan Saraf Vital Sekolah</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Sebuah analogi tentang bagaimana Kepala Bagian Tata Usaha berfungsi sebagai sistem saraf pusat yang memastikan seluruh "organ" sekolah bekerja secara harmonis dan efisien.</p>
+        </header>
+
+        <main class="space-y-12 md:space-y-20">
+
+            <section id="pusat-kendali" class="card">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold text-[#005f73] mb-4">🧠 Pusat Kendali</h2>
+                        <p class="text-gray-600 mb-4">Kabag TU adalah otak dari operasional sekolah. Setiap hari, ratusan informasi diterima, diproses, dan diubah menjadi instruksi konkret. Dari data siswa hingga permintaan guru, semuanya terpusat di sini untuk memastikan keputusan yang cepat dan tepat.</p>
+                        <div class="bg-blue-50 p-4 rounded-lg text-center">
+                            <div class="text-5xl font-extrabold text-[#0a9396]">300+</div>
+                            <div class="text-gray-700 font-semibold">Tugas Administratif Harian</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-center mb-4 text-[#005f73]">Distribusi Aliran Informasi Masuk</h3>
+                        <div class="chart-container h-64 md:h-80">
+                            <canvas id="pusatKendaliChart"></canvas>
+                        </div>
+                        <p class="text-center text-sm text-gray-500 mt-2">Grafik ini menunjukkan proporsi sumber informasi yang dikelola oleh Kabag TU setiap hari, menyoroti perannya sebagai hub komunikasi sentral.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="saraf-penghubung" class="card">
+                <h2 class="text-3xl font-bold text-[#005f73] mb-2 text-center">🔗 Saraf Penghubung</h2>
+                <p class="text-gray-600 mb-12 text-center max-w-3xl mx-auto">Kabag TU menghubungkan setiap departemen yang tampaknya terpisah, menciptakan sebuah sistem yang terintegrasi. Tanpa koneksi ini, sekolah akan bergerak lambat dan tidak terkoordinasi.</p>
+                <div class="relative flex flex-col items-center justify-center min-h-[400px] p-4">
+                    <div class="flowchart-node flowchart-center mb-16 md:mb-0">Kabag TU</div>
+                    
+                    <div class="absolute top-1/2 left-1/2 w-px h-full bg-[#94d2bd] transform -translate-x-1/2 -translate-y-1/2 hidden md:block"></div>
+                    <div class="absolute top-1/2 left-1/2 h-px w-full bg-[#94d2bd] transform -translate-x-1/2 -translate-y-1/2 hidden md:block"></div>
+
+                    <div class="md:absolute md:top-1/2 md:left-0 md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-auto mb-4 md:mb-0">
+                        <div class="flowchart-node">Keuangan & Sarpras</div>
+                    </div>
+                    <div class="md:absolute md:top-0 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-auto mb-4 md:mb-0">
+                        <div class="flowchart-node">Kepegawaian</div>
+                    </div>
+                    <div class="md:absolute md:top-1/2 md:right-0 md:translate-x-1/2 md:-translate-y-1/2 w-full md:w-auto mb-4 md:mb-0">
+                        <div class="flowchart-node">Data Siswa & Kurikulum</div>
+                    </div>
+                    <div class="md:absolute md:bottom-0 md:left-1/2 md:-translate-x-1/2 md:translate-y-1/2 w-full md:w-auto">
+                        <div class="flowchart-node">Layanan Dukungan</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="respon-imun" class="grid md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h2 class="text-3xl font-bold text-[#005f73] mb-4">⚡ Respon Cepat</h2>
+                    <p class="text-gray-600 mb-6">Kemampuan untuk merespon perubahan mendadak adalah kunci. Sistem yang terintegrasi memungkinkan Kabag TU memangkas waktu penyelesaian masalah secara drastis, dari hitungan hari menjadi jam.</p>
+                    <div class="chart-container h-80">
+                        <canvas id="responCepatChart"></canvas>
+                    </div>
+                     <p class="text-center text-sm text-gray-500 mt-2">Perbandingan waktu rata-rata yang dibutuhkan untuk menyelesaikan masalah administratif sebelum dan sesudah optimalisasi sistem oleh Kabag TU.</p>
+                </div>
+                <div class="card">
+                    <h2 class="text-3xl font-bold text-[#005f73] mb-4">🛡️ Sistem Imun Sekolah</h2>
+                    <p class="text-gray-600 mb-6">Kabag TU bertindak sebagai sistem imun, menjaga sekolah dari risiko administratif dengan memastikan kepatuhan 100% terhadap regulasi. Ini melindungi reputasi dan keberlangsungan sekolah.</p>
+                    <div class="chart-container h-80">
+                        <canvas id="sistemImunChart"></canvas>
+                    </div>
+                     <p class="text-center text-sm text-gray-500 mt-2">Tingkat kepatuhan sekolah pada berbagai area regulasi kunci, menunjukkan peran protektif Kabag TU dalam menjaga kesehatan administrasi.</p>
+                </div>
+            </section>
+
+            <section id="fungsi-optimal" class="card">
+                <h2 class="text-3xl font-bold text-[#005f73] mb-2 text-center">✅ Fungsi Tubuh Optimal</h2>
+                <p class="text-gray-600 mb-8 text-center max-w-3xl mx-auto">Hasil akhir dari jaringan saraf yang sehat adalah sekolah yang berjalan lancar, efisien, dan adaptif. Ini bukan hanya tentang administrasi, tetapi tentang menciptakan ekosistem pendidikan yang unggul.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center mb-10">
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <div class="text-4xl font-extrabold text-[#0a9396]">95%</div>
+                        <div class="text-gray-700 font-semibold">Efisiensi Operasional</div>
+                    </div>
+                    <div class="bg-yellow-50 p-6 rounded-lg">
+                        <div class="text-4xl font-extrabold text-[#ee9b00]">+15%</div>
+                        <div class="text-gray-700 font-semibold">Kepuasan Guru & Staf</div>
+                    </div>
+                    <div class="bg-red-50 p-6 rounded-lg">
+                        <div class="text-4xl font-extrabold text-[#ae2012]">100%</div>
+                        <div class="text-gray-700 font-semibold">Laporan Tepat Waktu</div>
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold text-center mb-4 text-[#005f73]">Tren Peningkatan Efisiensi Operasional Sekolah</h3>
+                <div class="chart-container h-80">
+                    <canvas id="fungsiOptimalChart"></canvas>
+                </div>
+                <p class="text-center text-sm text-gray-500 mt-2">Grafik ini melacak peningkatan persentase efisiensi operasional sekolah dari waktu ke waktu, sebagai hasil langsung dari manajemen tata usaha yang efektif.</p>
+            </section>
+
+        </main>
+
+        <footer class="text-center py-10 mt-12 border-t border-gray-200">
+            <p class="text-gray-600">&copy; 2025 Infografis Visi Pendidikan. Dibuat untuk menggambarkan peran krusial Tata Usaha.</p>
+        </footer>
+    </div>
+
+    <script>
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        };
+
+        const chartColors = {
+            blue: '#0a9396',
+            teal: '#94d2bd',
+            yellow: '#e9d8a6',
+            orange: '#ee9b00',
+            red: '#ae2012',
+            darkBlue: '#005f73'
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#374151',
+                        font: {
+                            family: "'Inter', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    backgroundColor: '#005f73',
+                    titleFont: { size: 14, family: "'Inter', sans-serif", weight: 'bold' },
+                    bodyFont: { size: 12, family: "'Inter', sans-serif" },
+                    padding: 10,
+                    cornerRadius: 5
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: '#4b5563' },
+                    grid: { display: false }
+                },
+                y: {
+                    ticks: { color: '#4b5563' },
+                    grid: { color: '#e5e7eb' }
+                }
+            }
+        };
+
+        new Chart(document.getElementById('pusatKendaliChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Guru & Staf', 'Manajemen', 'Siswa & Orang Tua', 'Pihak Eksternal'],
+                datasets: [{
+                    label: 'Sumber Informasi',
+                    data: [45, 25, 20, 10],
+                    backgroundColor: [chartColors.blue, chartColors.teal, chartColors.yellow, chartColors.orange],
+                    borderColor: '#ffffff',
+                    borderWidth: 4,
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: { x: { display: false }, y: { display: false } },
+                plugins: {
+                    ...defaultChartOptions.plugins,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#374151',
+                            font: { family: "'Inter', sans-serif" },
+                            padding: 20
+                        }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('responCepatChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Sebelum Optimalisasi', 'Sesudah Optimalisasi'],
+                datasets: [{
+                    label: 'Waktu Penyelesaian (Jam)',
+                    data: [48, 6],
+                    backgroundColor: [chartColors.red, chartColors.blue],
+                    borderRadius: 5,
+                    barPercentage: 0.6
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                indexAxis: 'y',
+                plugins: {
+                    ...defaultChartOptions.plugins,
+                    legend: { display: false }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('sistemImunChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Privasi Data Siswa', 'Audit Keuangan', 'Standar Akreditasi', 'Regulasi Kepegawaian', 'Prosedur Sarpras'],
+                datasets: [{
+                    label: 'Tingkat Kepatuhan (%)',
+                    data: [100, 98, 95, 100, 97],
+                    backgroundColor: 'rgba(10, 147, 150, 0.2)',
+                    borderColor: chartColors.blue,
+                    pointBackgroundColor: chartColors.blue,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: chartColors.blue,
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: {
+                    r: {
+                        angleLines: { color: '#d1d5db' },
+                        grid: { color: '#e5e7eb' },
+                        pointLabels: {
+                            font: { size: 12, family: "'Inter', sans-serif" },
+                            color: '#374151'
+                        },
+                        ticks: {
+                            backdropColor: 'rgba(255, 255, 255, 0.75)',
+                            color: '#4b5563'
+                        },
+                        min: 80,
+                        max: 100
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('fungsiOptimalChart'), {
+            type: 'line',
+            data: {
+                labels: ['Kuartal 1', 'Kuartal 2', 'Kuartal 3', 'Kuartal 4'],
+                datasets: [{
+                    label: 'Efisiensi Operasional (%)',
+                    data: [82, 88, 92, 95],
+                    fill: true,
+                    backgroundColor: 'rgba(10, 147, 150, 0.1)',
+                    borderColor: chartColors.blue,
+                    tension: 0.4,
+                    pointBackgroundColor: chartColors.blue,
+                    pointRadius: 5,
+                    pointHoverRadius: 7
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                plugins: {
+                    ...defaultChartOptions.plugins,
+                    legend: { display: false }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
